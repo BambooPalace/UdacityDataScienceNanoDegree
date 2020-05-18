@@ -28,7 +28,7 @@ This project analysed Airbnb's Seattle data in 2016, to answer below questions:
 The <a href='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/tree/master/seattle%20airbnb%20dataset'>
     dataset<a> for analysis and 
     <a hred='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/tree/master/Course2-Intro%20to%20DataScience'>
-        project tips<a> are in the same repository. 
+        project tips</a> are in the same repository. 
 
 
 ## Project intepretation<a name="results"></a>
