@@ -15,10 +15,10 @@ There should be no necessary libraries to run the code here beyond the Anaconda 
 
 This project analysed Airbnb's Seattle data in 2016, to answer below questions:
 
-1. Can you build a price suggestor for listings? which features impact the price most?<br>
-2. What are the attributes of listings with higher review scores? <br>
-3. How the price changes over one year?<br>
-4. What are the busiest times of the year to visit Seattle?<br>
+> 1. Can you build a price suggestor for listings? which features impact the price most?<br>
+> 2. What are the attributes of listings with higher review scores? <br>
+> 3. How the price changes over one year?<br>
+> 4. What are the busiest times of the year to visit Seattle?<br>
 
 
 
