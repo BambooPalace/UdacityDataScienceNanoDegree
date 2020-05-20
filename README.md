@@ -4,7 +4,7 @@
 1. [Installation](#installation)
 2. [Project Motivation](#motivation)
 3. [File Descriptions](#files)
-4. [Results](#results)
+4. [Project intepretation](#results)
 5. [Licensing, Authors, and Acknowledgements](#licensing)
 
 ## Installation <a name="installation"></a>
@@ -26,15 +26,27 @@ This project analysed Airbnb's Seattle data in 2016, to answer below questions:
 
 <a href='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/blob/master/Airbnb%20Dataset%20Analysis.ipynb'> This notebook</a> contains all the codes and explanation of the data analysis, following CRISP-DM procedure.  <br>
 The <a href='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/tree/master/seattle%20airbnb%20dataset'>
-    dataset</a> for analysis and 
-    <a href='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/tree/master/Course2-Intro%20to%20DataScience'>
-        project tips</a> are in the same repository. 
+    datasets</a> are provided by Airbnb through [Kaggle](https://www.kaggle.com/airbnb/seattle/data), as below:<br>
+- Listings, including full descriptions and average review score
+- Reviews, including unique id for each reviewer and detailed comments
+- Calendar, including listing id and the price and availability for that day
+Some tips from Udacity's data science course are also included <a href='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/tree/master/Course2-Intro%20to%20DataScience'> here</a> in the same repository. 
+        
 
 
 ## Project intepretation<a name="results"></a>
 
-The findings of the analysis is summarized in the medium blog [post](https://medium.com/@aprilgng/airbnb-seattle-dataset-analysis-263a05e7fad).
+Some interesting insights about Seattle was found and summarized in this medium blog [post](https://medium.com/@aprilgng/airbnb-seattle-dataset-analysis-263a05e7fad).
+Here I offer you a peak of them:
+> 1. The number of bedrooms and number of people to the listing can accomodate are the top price indicators.
+> 2. listings reviews hugely depend on how the hosts behave.
+> 3. Seattle listings are the most expensive in July, so cross that month in your trip planner!
+> 4. July is not Seattle's most visited time though, it's August! But apparently vistors to Capitol hill think differently, if you know why, comment in my blog okay?
+
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
 
-Project data and codes is under License[CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0/) and shared through Kaggle [platform](https://www.kaggle.com/airbnb/seattle/data).  
+The thought process on data and feature handling in my project are original, but praise Stackoverflow for the times when I have problems in coding.
+
+For the sharing spirit of internet, you are free to use it following License [CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0/).
+
