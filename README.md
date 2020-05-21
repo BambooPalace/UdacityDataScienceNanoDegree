@@ -24,7 +24,7 @@ This project analysed Airbnb's Seattle data in 2016, to answer below questions:
 
 ## File Descriptions <a name="files"></a>
 
-<a href='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/blob/master/Airbnb%20Dataset%20Analysis.ipynb'> This notebook</a> contains all the codes and explanation of the data analysis, following CRISP-DM procedure.  <br>
+[This notebook](Airbnb Dataset Analysis-Reviewed.ipynb) contains all the codes and explanation of the data analysis, following CRISP-DM procedure.  <br>
 The <a href='https://github.com/BambooPalace/UdacityDataScienceNanoDegree/tree/master/seattle%20airbnb%20dataset'>
     datasets</a> are provided by Airbnb through [Kaggle](https://www.kaggle.com/airbnb/seattle/data), as below:<br>
 - Listings, including full descriptions and average review score
