@@ -31,16 +31,16 @@ There are other more advanced forms of POS tagging that can learn sentence struc
 In order to feed text data into a statistical or a machine learning model.
 
 > 
-- If you want to use a graph based model to extract insights,
+- If you want to use a **graph based model** to extract insights,
 you may want to represent your words as 
 symbolic nodes with relationships between them like WordNet.
 For statistical models however,
-- If you're trying to perform a document level task,
-such as spam detection or sentiment analysis,
-you may want to use a per document representations such as bag-of-words or doc2vec.
-- If you want to work with individual words and phrases
-such as for text generation or machine translation,
-you'll need a word level representation such as word2vec or glove.
+- If you're trying to perform a **document level** task,
+such as **spam detection or sentiment analysis** ,
+you may want to use a per document representations such as **bag-of-words or doc2vec**.
+- If you want to work with **individual words and phrases**
+such as for **text generation or machine translation,**
+you'll need a word level representation such as **word2vec or glove.**
 
 - Bag of Words
 - TF-IDF (term frequency in document frequency)
