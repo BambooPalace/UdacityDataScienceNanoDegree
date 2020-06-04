@@ -14,11 +14,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report,f1_score
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.naive_bayes import BernoulliNB
+from sklearn.naive_bayes import ComplementNB
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import f1_score
 from joblib import dump,load
-from sklearn.externals import joblib
 
 nltk.download('punkt') #tokenizer
 nltk.download('stopwords') 
@@ -51,7 +50,7 @@ def build_model():
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(BernoulliNB()))
+        ('clf', MultiOutputClassifier(ComplementNB()))
      ])
     #set gridsearch parameters 
     parameters = {
@@ -69,12 +68,11 @@ def evaluate_model(model, X_test, Y_test,category_names):
     f1_list_weighted=[]
     for i in range(n):
         print(classification_report(Y_test[:,i], Y_preds[:,i]),('for label:'+category_names[i].upper()))    
-        f1_list_weighted.append(f1_score(Y_test[:,i], Y_preds[:,i], average='weighted'))
-    print('Total weighted f1_score',sum(f1_list_weighted)/n)
+
 
     
 def save_model(model, model_filepath):
-    joblib.dump(model, model_filepath)
+    dump(model, model_filepath)
 
 
 def main():
@@ -88,7 +86,7 @@ def main():
         model = build_model()
         
         print('Training model...')
-        model.fit(X_train[:50], Y_train[:50])
+        model.fit(X_train, Y_train)
         
         print('Evaluating model...')
         evaluate_model(model, X_test, Y_test,category_names)
@@ -97,6 +95,10 @@ def main():
         save_model(model, model_filepath)
 
         print('Trained model saved!')
+        
+        print('Testing model')
+        text=["We are more than 50 people sleeping on the street. Please help us find tent, food."]        
+        print(model.predict(text)[0])        
 
     else:
         print('Please provide the filepath of the disaster messages database '\
@@ -107,4 +109,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    

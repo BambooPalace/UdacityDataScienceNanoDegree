@@ -18,7 +18,6 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import f1_score
 from joblib import dump,load
-from sklearn.externals import joblib
 
 nltk.download('punkt') #tokenizer
 nltk.download('stopwords') 
@@ -71,12 +70,12 @@ def evaluate_model(model, X_test, Y_test,category_names):
 
 
 def save_model(model, model_filepath):
-    joblib.dump(model, model_filepath)
+    dump(model, model_filepath)
 
 # below are my functions for testing
 def load_model():
     # test show error if use sklearn.externals.joblib to unload
-    model = joblib.load('models/classifier.pkl') 
+    model = load('models/classifier.pkl') 
     print('model unpickled')
     return model
 
@@ -101,7 +100,7 @@ def test_classifier(text):
 # python models/test_train_classifier.py data/DisasterResponse.db models/classifier.pkl
 if __name__ == '__main__':
     _,_,labels=load_data('data/DisasterResponse.db')
-    text=["I am thirsty"]        
+    text=["I hear thunder"]        
     test_classifier(text)
 
   

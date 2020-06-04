@@ -13,7 +13,7 @@ from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 from joblib import load
 from sqlalchemy import create_engine
-from sklearn.externals import joblib
+
 
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('messages', engine)
 
 # load model
-model = joblib.load('models/classifier.pkl')
+model = load('models/classifier.pkl')
 
 
 # index webpage displays cool visuals and receives user input text for model
