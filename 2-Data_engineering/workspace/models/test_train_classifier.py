@@ -76,18 +76,14 @@ def save_model(model, model_filepath):
 def load_model():
     # test show error if use sklearn.externals.joblib to unload
     model = load('models/classifier.pkl') 
-    print('model unpickled')
     return model
 
 def display_category(text,model):
     # display prediction of a message in dataframe format
     cat=model.predict(text)[0]
-    print(cat)
-    print('complete preditction')
     df=pd.DataFrame({'prediction': cat}, index=labels)
     df= df[df.prediction==1]
-    print('results dataframe ready')
-    return df
+    print(df)
 
 def test_classifier(text):
     #load model and run on a test text sample
@@ -101,6 +97,7 @@ def test_classifier(text):
 if __name__ == '__main__':
     _,_,labels=load_data('data/DisasterResponse.db')
     text=["I hear thunder"]        
+    print('Classifier for below message: \n\t'+ text[0])
     test_classifier(text)
 
   

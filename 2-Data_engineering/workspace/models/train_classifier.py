@@ -14,6 +14,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report,f1_score
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+#The classifier- ComplementNB need scikit-learn 0.20+ to run, need to update workspace 
 from sklearn.naive_bayes import ComplementNB
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import f1_score
@@ -69,11 +70,17 @@ def evaluate_model(model, X_test, Y_test,category_names):
     for i in range(n):
         print(classification_report(Y_test[:,i], Y_preds[:,i]),('for label:'+category_names[i].upper()))    
 
-
     
 def save_model(model, model_filepath):
     dump(model, model_filepath)
 
+    
+def test_model(text,model, labels):
+    # display prediction of a message in dataframe format
+    cat=model.predict(text)[0]
+    df=pd.DataFrame({'classification': cat}, index=labels)
+    df= df[df.prediction==1]
+    print(df)    
 
 def main():
     if len(sys.argv) == 3:
@@ -82,6 +89,7 @@ def main():
         X, Y, category_names = load_data(database_filepath)
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3)
         
+
         print('Building model...')
         model = build_model()
         
@@ -97,8 +105,9 @@ def main():
         print('Trained model saved!')
         
         print('Testing model')
-        text=["We are more than 50 people sleeping on the street. Please help us find tent, food."]        
-        print(model.predict(text)[0])        
+        text=["I hear thunder"]        
+        print('Classifier for below message: \n\t'+ text[0])
+        test_model(text, model,category_names)       
 
     else:
         print('Please provide the filepath of the disaster messages database '\
