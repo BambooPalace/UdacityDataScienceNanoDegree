@@ -1,37 +1,42 @@
-import warnings
-warnings.filterwarnings("ignore")# for warning when model handle sparse matrix
 
 import json
 import plotly
 import pandas as pd
-
+import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
-
+from nltk.corpus import stopwords
 from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 from joblib import load
 from sqlalchemy import create_engine
+import re
+from wordcloud import WordCloud
+#need to update plotly package
+import plotly.express as px
 
 
+nltk.download('stopwords')
 
 app = Flask(__name__)
 
+
 def tokenize(text):
+    # normalize case and remove punctuation
+    text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
+    # tokenize text
     tokens = word_tokenize(text)
+    # lemmatize and remove stop words
     lemmatizer = WordNetLemmatizer()
-
-    clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
-
-    return clean_tokens
+    stop_words = stopwords.words("english")
+    tokens = [lemmatizer.lemmatize(word) for word in tokens if word not in stop_words]
+    return tokens
 
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('messages', engine)
+
 
 # load model
 model = load('models/classifier.pkl')
@@ -43,29 +48,48 @@ model = load('models/classifier.pkl')
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
+    # Gragh one data extraction: Bar charts
+    category_counts=df.iloc[:,3:].sum().sort_values(ascending=False)
+    categories=list(category_counts.index)    
+    
+    #Graph two data extraction: word cloud
+    text=' '.join(df.message.tolist())
+    token=tokenize(text)
+    all_token=' '.join(token)
+    wordcloud = WordCloud(max_font_size=70, max_words=200, background_color="black").generate(all_token)
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
+        #graph one
         {
             'data': [
                 Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    x=categories,
+                    y=category_counts,
+                    text=category_counts,
+                    textposition='outside'
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Distribution of Message Categories',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Category"
                 }
+            }
+        },
+        #graph two
+        {
+            'data':[
+                px.imshow(wordcloud)
+            ],
+            
+            'layout':{
+                'title': 'Word Cloud of All Messages'
             }
         }
     ]

@@ -82,7 +82,7 @@ def display_category(text,model):
     # display prediction of a message in dataframe format
     cat=model.predict(text)[0]
     df=pd.DataFrame({'prediction': cat}, index=labels)
-    df= df[df.prediction==1]
+    df= df[df.prediction!=0]
     print(df)
 
 def test_classifier(text):
