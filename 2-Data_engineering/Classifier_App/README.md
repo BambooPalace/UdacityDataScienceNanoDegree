@@ -23,19 +23,20 @@ The project is done in three steps:
 ## File Descriptions <a name="files"></a>
 
 All app data is in  current *Classifier_App* folder, project code structure is as below: 
-\- app
+
+\- app<br>
 | - template<br>
 | |- master.html  # main page of web app<br>
 | |- go.html  # classification result page of web app<br>
 |- run.py  # Flask file that runs app<br>
 
-\- data
+\- data<br>
 |- disaster_categories.csv  # data to process <br>
 |- disaster_messages.csv  # data to process<br>
 |- process_data.py<br>
 |- InsertDatabaseName.db   # database to save clean data to<br>
 
-\- models
+\- models<br>
 |- train_classifier.py<br>
 |- classifier.pkl  # saved model         <br>
 
@@ -43,7 +44,7 @@ Other folders contain preparation data and knowledge files.
 
 ## Intructions to run app<a name="instructions"></a>
 1. Run the following commands in the project's root directory to set up your database and model.
-- update scikit-learn to 0.20+ 
+    - update scikit-learn to 0.20+ 
 
     - To run ETL pipeline that cleans data and stores in database, in command line:
         `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
@@ -53,8 +54,8 @@ Other folders contain preparation data and knowledge files.
 
 
 2. Run the following command in the app's directory to run your web app.
-- install wordcloud and plotly before run
-- in command line:
+    - install wordcloud and plotly before run
+    - in command line:
     `python app/run.py`
  
 
