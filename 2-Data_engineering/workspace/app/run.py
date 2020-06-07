@@ -48,51 +48,56 @@ model = load('models/classifier.pkl')
 def index():
     
     # extract data needed for visuals
-    # Gragh one data extraction: Bar charts
-    category_counts=df.iloc[:,3:].sum().sort_values(ascending=False)
-    categories=list(category_counts.index)    
-    
-    #Graph two data extraction: word cloud
+    #Graph one: word cloud
     text=' '.join(df.message.tolist())
     token=tokenize(text)
     all_token=' '.join(token)
-    wordcloud = WordCloud(max_font_size=70, max_words=200, background_color="black").generate(all_token)
+    wordcloud = WordCloud(max_font_size=50, max_words=100, background_color="black").generate(all_token)
     
-    # create visuals
-    # TODO: Below is an example - modify to create your own visuals
-    graphs = [
-        #graph one
-        {
+    fig1=px.imshow(wordcloud)
+    fig1.update_layout(
+        title=dict(text='<b>Most Commonly-used Words in Disaster Responses</b>',x=0.5,\
+                   font=dict(
+                    color="darkblue",
+                    size=18
+            ),),
+        xaxis={'showgrid':False, 'showticklabels':False, 'zeroline': False},
+        yaxis={'showgrid':False, 'showticklabels':False, 'zeroline': False},
+        hovermode=False,
+               )
+ 
+    # Gragh two: Bar charts
+    category_counts=df.iloc[:,3:].sum().sort_values(ascending=False)
+    categories=list(category_counts.index)    
+    
+    fig2 = {
             'data': [
                 Bar(
                     x=categories,
                     y=category_counts,
                     text=category_counts,
-                    textposition='outside'
+                    textposition='inside'
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Categories',
+                'title': dict(text='<b>Distribution of Disaster Message Categories</b>',x=0.5,\
+                   font=dict(
+                    color="darkblue",
+                    size=18
+            ),),
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Category"
-                }
-            }
-        },
-        #graph two
-        {
-            'data':[
-                px.imshow(wordcloud)
-            ],
-            
-            'layout':{
-                'title': 'Word Cloud of All Messages'
+                    'title': "Category",
+                    'automargin': True,
+                    'tickangle':30
+                },
             }
         }
-    ]
+    
+    graphs=[fig1,fig2]
     
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
