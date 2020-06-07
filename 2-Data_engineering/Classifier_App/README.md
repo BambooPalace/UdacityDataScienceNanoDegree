@@ -22,7 +22,7 @@ The project is done in three steps:
 
 ## File Descriptions <a name="files"></a>
 
-App data is in [Classifier_App](http:/) folder, project code structure is as below: 
+All app data is in  current [Classifier_App]folder, project code structure is as below: 
 - app
 | - template
 | |- master.html  # main page of web app
