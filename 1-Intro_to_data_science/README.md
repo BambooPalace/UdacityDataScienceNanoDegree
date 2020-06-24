@@ -36,7 +36,7 @@ Some tips from Udacity's data science course are also included <a href='https://
 
 ## Project intepretation<a name="results"></a>
 
-In this [<b>Medium blog</b>](https://medium.com/@aprilgng/airbnb-seattle-dataset-analysis-263a05e7fad)I summarized and shared interesting insights about Seattle.
+In this [<b>Medium blog</b>](https://medium.com/@aprilgng/airbnb-seattle-dataset-analysis-263a05e7fad) I summarized and shared interesting insights about Seattle.
 Here is a peak of them:
 > 1. The number of bedrooms and number of people to the listing can accomodate are the top price indicators.
 > 2. listings reviews hugely depend on how the hosts behave.
